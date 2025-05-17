@@ -62,7 +62,7 @@ class LaravelMcpServerServiceProvider extends PackageServiceProvider
         $path = Config::get('mcp-server.default_path');
         $middlewares = Config::get('mcp-server.middlewares', []);
 
-        Route::get("{$path}/sse", [SseController::class, 'handle'])
+        Route::match(['GET', 'POST'], "{$path}/sse", [SseController::class, 'resolveSseRequest'])
             ->middleware($middlewares);
 
         Route::post("{$path}/message", [MessageController::class, 'handle']);

@@ -192,4 +192,9 @@ final class MCPServer
     {
         $this->protocol->requestMessage(clientId: $clientId, message: $message);
     }
+
+    public function isInitialized(): bool
+    {
+        return $this->initialized;
+    }
 }
